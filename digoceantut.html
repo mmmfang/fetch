@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tutorial</title>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 
     <script>
         const ul = document.querySelector('#authors');
-        const url = 'https://randomuser.me/api/?results=10';
+        const myUrl = 'https://randomuser.me/api/?results=10';
 
         let createNode = element => document.createElement(element);
 
@@ -24,7 +24,7 @@
 
         let append = (parent, el) => parent.appendChild(el);
 
-        fetch(url)
+        fetch(myUrl)
             .then(data => data.json())
             .then(function (data) {
                 let allResults = data.results;
@@ -42,6 +42,27 @@
                 })
             }).catch(error => console.log(error))
 
+        // POST
+        const url = 'https://randomuser.me/api'
+        let data = {
+            name: "Sammy",
+        }
+        // let fetchData = {
+        //     method: 'POST',
+        //     body: data,
+        //     headers: new Headers(),
+        // }
+        //fetch(url, fetchData).then(function () { });
+
+        //another way, use Request Constructor to create request object
+        //request takes the API url and an object
+        var request = new Request(url, {
+            method: 'POST',
+            body: data,
+            headers: new Headers()
+        })
+
+        fetch(request).then(() => console.log('success')).catch(error => console.log(error))
 
     </script>
 </body>
